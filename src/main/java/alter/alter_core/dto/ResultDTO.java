@@ -7,7 +7,11 @@ import org.springframework.http.HttpStatus;
 public class ResultDTO<T> {
     private int statusCode;  // HTTP 상태 코드
     private String message;  // 결과 메시지
-    private T data;
+    private T data; // 결과 데이터
+
+    public static <T> ResultDTO<T> success(int statusCode, String message, T data) {
+        return new ResultDTO(statusCode, "Request successful: " + message, data);
+    }
 
     public ResultDTO(int statusCode, String message, T data) {
         this.statusCode = statusCode;
@@ -15,15 +19,27 @@ public class ResultDTO<T> {
         this.data = data;
     }
 
-    // Static Factory Method for Success Response
-    public static <T> ResultDTO<T> success(T data) {
-        return new ResultDTO<>(HttpStatus.OK.value(), "Success", data);
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    // Static Factory Method for Error Response
-    public static <T> ResultDTO<T> error(HttpStatus status, String message) {
-        return new ResultDTO<>(status.value(), message, null);
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
+    public String getMessage() {
+        return message;
+    }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }

@@ -1,11 +1,14 @@
 package alter.alter_core.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Entity(name = "Companies")
+@Entity
+@Table(name="companies")
 public class Company {
 
     @Id
@@ -23,11 +26,13 @@ public class Company {
     private String phoneNumber;
 
     @Column(name = "is_valid")
-    private boolean isValid;
+    private boolean isValid = true;
 
+    @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private Timestamp createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 

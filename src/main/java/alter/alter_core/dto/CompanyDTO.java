@@ -14,6 +14,15 @@ public class CompanyDTO {
 
     private String phoneNumber;
 
+    @Override
+    public String toString() {
+        return "CompanyDTO{" +
+                "name='" + name + '\'' +
+                ", companyNo='" + companyNo + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
@@ -27,7 +36,7 @@ public class CompanyDTO {
     }
 
     public void setCompanyNo(String companyNo) {
-        companyNo = companyNo;
+        this.companyNo = companyNo;
     }
 
     public String getPhoneNumber() {
